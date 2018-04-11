@@ -1,11 +1,18 @@
 import React from 'react';
 import Book from './Book'
+import { List, ListItem } from 'material-ui';
+
+const listStyle = {
+    textAlign: "center",
+};
 
 class BookList extends React.Component {    
     render() {
         return (
             <div>
-                <Book title={'Full Stack React'}/>
+                <List style={listStyle}>
+                    <ListItem children={<Book title={'Full Stack React'}/>} />
+                </List>
             </div>
         );
     }
