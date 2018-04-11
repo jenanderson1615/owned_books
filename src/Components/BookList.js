@@ -5,7 +5,7 @@ class BookList extends React.Component {
     render() {
         return (
             <div>
-                <Book />
+                <Book title={'Full Stack React'}/>
             </div>
         );
     }
