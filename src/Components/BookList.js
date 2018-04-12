@@ -11,7 +11,7 @@ class BookList extends React.Component {
         return (
             <div>
                 <List style={listStyle}>
-                    <ListItem children={<Book title={'Full Stack React'}/>} />
+                    <ListItem> <Book title={'Full Stack React'}/> </ListItem>
                 </List>
             </div>
         );
