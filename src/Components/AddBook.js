@@ -16,16 +16,28 @@ class AddBook extends React.Component {
                     titleStyle={titleStyle}
                     showMenuIconButton={false}
                 />
-                <form>
-                    <div> Title </div>
-                    <div> Author </div>
-                    <div> Description </div>
-                    <Link to={'/'}>
-                        <RaisedButton> Back </RaisedButton>
-                    </Link>
-                    <Link to={'/'}>
-                        <RaisedButton> Add </RaisedButton>
-                    </Link>
+                <form style={titleStyle}>
+                    <div>
+                        Title:{'    '}
+                    <input type='text' name='title'/>
+                    </div>
+                    <div>
+                        Author:{'    '}
+                    <input type='text' name='author'/>
+                    </div>
+                    <div>
+                        Description:{'    '}
+                    <input type='text' name='description'/>
+                    </div>
+                    <div>
+                        <Link to={'/'}>
+                            <RaisedButton> Back </RaisedButton>
+                        </Link>
+                        {'   '}
+                        <Link to={'/'}>
+                            <RaisedButton> Add </RaisedButton>
+                        </Link>
+                    </div>
                 </form>
             </div>
         );

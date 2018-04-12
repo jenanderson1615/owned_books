@@ -16,15 +16,18 @@ class BookDetail extends React.Component {
                     titleStyle={titleStyle}
                     showMenuIconButton={false}
                 />
-                <div>{this.props.title}</div>
-                <div>{this.props.author}</div>
-                <div>{this.props.description}</div>
-                <Link to={'/'}>
-                    <RaisedButton> Back </RaisedButton>
-                </Link>
-                <Link to={'/'}>
-                    <RaisedButton> Delete </RaisedButton>
-                </Link>
+                <div style={titleStyle}>
+                    <div>{this.props.title}</div>
+                    <div>{this.props.author}</div>
+                    <div>{this.props.description}</div>
+                    <Link to={'/'}>
+                        <RaisedButton> Back </RaisedButton>
+                    </Link>
+                    {'   '}
+                    <Link to={'/'}>
+                        <RaisedButton> Delete </RaisedButton>
+                    </Link>
+                </div>
             </div>
         );
     }

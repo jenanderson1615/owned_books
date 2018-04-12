@@ -6,15 +6,26 @@ const listStyle = {
     textAlign: "center",
 };
 
-class BookList extends React.Component {    
+class BookList extends React.Component {  
     render() {
+        const books = this.props.books.map((book) => (
+            <ListItem>
+                <Book 
+                    title = {book.title}
+                    author = {book.author}
+                    description = {book.description}
+                />
+            </ListItem>    
+        ));
+
         return (
-            <div>
+            <div> 
                 <List style={listStyle}>
-                    <ListItem> <Book title={'Full Stack React'}/> </ListItem>
+                    {books}
                 </List>
             </div>
         );
+        
     }
 }
 
