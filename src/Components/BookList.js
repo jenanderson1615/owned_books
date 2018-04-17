@@ -1,6 +1,10 @@
 import React from 'react';
-import Book from './Book'
 import { List, ListItem } from 'material-ui';
+import Switch from 'react-router-dom/Switch';
+import Route from 'react-router-dom/Route';
+import BookDetail from './BookDetail';
+import Link from 'react-router-dom/Link';
+import OwnedBooksDashboard from './OwnedBooksDashboard'
 
 const listStyle = {
     textAlign: "center",
@@ -10,16 +14,13 @@ class BookList extends React.Component {
     render() {
         const books = this.props.books.map((book) => (
             <ListItem>
-                <Book 
-                    title = {book.title}
-                    author = {book.author}
-                    description = {book.description}
-                />
+                <Route exact path='/book_detail/:isbn' render={(props) => <BookDetail {...props} title={book.title} author={book.author} description={book.description} isbn={book.isbn} />} />
+                <Link to={`/book_detail/${book.isbn}`}>{book.title}</Link>
             </ListItem>    
         ));
 
         return (
-            <div> 
+            <div>
                 <List style={listStyle}>
                     {books}
                 </List>
