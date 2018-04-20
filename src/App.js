@@ -4,6 +4,7 @@ import OwnedBooksDashboard from './Components/OwnedBooksDashboard';
 import { Switch, Route } from 'react-router-dom'
 import AddBook from './Components/AddBook';
 import BookList from './Components/BookList';
+import BookDetail from './Components/BookDetail'
 
 class App extends Component {
   render() {
@@ -19,10 +20,12 @@ class App extends Component {
 
 const Paths = () => (
   <Switch>
-    <Route path='/' component={OwnedBooksDashboard} />
-    <Route path='/add_book' component={AddBook} />
+    <Route exact path='/' component={OwnedBooksDashboard} />
+    <Route exact path='/add_book' component={AddBook} />
     <Route exact path='/book_detail' component={BookList} />
+    <Route exact path='/book_detail/:isbn' component={BookDetail} />
   </Switch>
 )
 
 export default App;
+
