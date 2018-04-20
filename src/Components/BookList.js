@@ -16,19 +16,30 @@ class BookList extends React.Component {
     }
 
     render() {
-        let {books} = this.state;
-
-        const bookLinks = books.map((book) => (
-            <ListItem>
-                <Link to={`/book_detail/${book.isbn}`}>{book.title}</Link>
-            </ListItem>    
-        ));
+        let { books } = this.props;
+        // Object.keys(books).map((book) => (
+        //     console.log(book[key]),
+        //     console.log(book[key])
+        // ));
+        for (var book in books) {
+            var bookObject = books[book];
+            console.log(bookObject['volumeInfo']);
+        }
+        // const bookLinks = books.map((book) => (
+        //     <div>
+        //     <h1>{book.totalItems}</h1>
+        //         {/* <ListItem>
+        //             <Link to={`/book_detail/${book.id}`}>{book.title}</Link>
+        //         </ListItem>     */}
+        //     </div>    
+        // ));
 
         return (
             <div>
-                <List style={listStyle}>
+                Book List
+                {/* <List style={listStyle}>
                     {bookLinks}
-                </List>
+                </List> */}
             </div>
         );
         

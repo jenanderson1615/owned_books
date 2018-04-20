@@ -4,7 +4,7 @@ import AppBar from 'material-ui/AppBar'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import Link from 'react-router-dom/Link'
-import books from '../Books';
+import axios from 'axios'
 
 const titleStyle = {
     textAlign: "center",
@@ -12,8 +12,16 @@ const titleStyle = {
 
 class OwnedBooksDashboard extends React.Component {  
     state = {
-        books: books
-    };  
+        books: []
+    }; 
+
+    componentDidMount() {
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes`)
+            .then(res => {
+                const books = res.data;
+                this.setState({ books });
+            })
+    }
     
     render() {
         return (
@@ -24,7 +32,7 @@ class OwnedBooksDashboard extends React.Component {
                     showMenuIconButton={false}
                     iconElementRight={<PlusButton/>}
                 />
-                <BookList books={this.state.books} />
+                <BookList books={this.state.books.items} /> 
             </div>
         );
     }

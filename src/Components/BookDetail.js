@@ -11,12 +11,12 @@ const titleStyle = {
 class BookDetail extends React.Component {
 
     state = {
-        book: null
+        book: []
     }
 
     componentDidMount() {
-        let isbn = this.props.match.params.isbn;
-        let book = books.find((b) => b.isbn == isbn);
+        let id = this.props.match.params.id;
+        let book = books.find((b) => b.id == id);
         this.setState({
             book: book
         })

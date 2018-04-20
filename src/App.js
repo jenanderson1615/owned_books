@@ -23,7 +23,9 @@ const Paths = () => (
     <Route exact path='/' component={OwnedBooksDashboard} />
     <Route exact path='/add_book' component={AddBook} />
     <Route exact path='/book_detail' component={BookList} />
-    <Route exact path='/book_detail/:isbn' component={BookDetail} />
+    {/* <Route exact path='/book_detail/:id' component={BookDetail} /> */}
+    <Route path='/book_detail/:id' render={(props) => <BookDetail {...props} title={"Full Stack React"} author={'IDK'} description={'my description'} />} />
+
   </Switch>
 )
 
