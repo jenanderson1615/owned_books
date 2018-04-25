@@ -20,7 +20,7 @@ class OwnedBooksDashboard extends React.Component {
     }; 
 
     componentDidMount() {
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes`)
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=flowers`)
             .then(res => {
                 const books = res.data.items;
                 this.setState({ books });

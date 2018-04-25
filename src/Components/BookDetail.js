@@ -3,6 +3,7 @@ import AppBar from 'material-ui/AppBar'
 import Link from 'react-router-dom/Link'
 import RaisedButton from 'material-ui/RaisedButton'
 import books from '../Books';
+import axios from 'axios';
 
 const titleStyle = {
     textAlign: "center",
@@ -15,11 +16,14 @@ class BookDetail extends React.Component {
     }
 
     componentDidMount() {
-        let id = this.props.match.params.id;
-        let book = books.find((b) => b.id == id);
-        this.setState({
-            book: book
-        })
+        let bookId = this.props.match.params.id
+        let link = 'https://www.googleapis.com/books/v1/volumes/' + bookId;
+        axios.get(link)
+            .then(res => {
+                const book = res.data.volumeInfo;
+                console.log(book);
+                this.setState({ book });
+            })
     }
 
     render() {
@@ -40,11 +44,10 @@ class BookDetail extends React.Component {
 }
 
 const BookDetails = ({ book }) => {
-	
     return (
         <div style={titleStyle}>
             <div>{book.title}</div>
-            <div>{book.author}</div>
+            <div>{book.authors}</div>
             <div>{book.description}</div>
             <Link to={'/'}>
                 <RaisedButton> Back </RaisedButton>
