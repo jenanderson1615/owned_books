@@ -10,8 +10,6 @@ class App extends Component {
     return (
       <div>
          <Paths />
-        {/**yes but always there */ }
-        {/* <span>does this work</span> */}
       </div>
     );
   }
@@ -22,7 +20,7 @@ const Paths = () => (
     <Route exact path='/' component={OwnedBooksDashboard} />
     <Route exact path='/add_book' component={AddBook} />
     <Route exact path='/book_detail' component={OwnedBooksDashboard} />
-    <Route path='/book_detail/:id' render={(props) => <BookDetail {...props} title={"Full Stack React"} author={'IDK'} description={'my description'} />} />
+    <Route path='/book_detail/:id' component={BookDetail} />
 
   </Switch>
 )

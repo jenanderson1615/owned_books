@@ -2,7 +2,6 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar'
 import Link from 'react-router-dom/Link'
 import RaisedButton from 'material-ui/RaisedButton'
-import books from '../Books';
 import axios from 'axios';
 
 const titleStyle = {
