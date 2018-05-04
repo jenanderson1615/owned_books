@@ -4,6 +4,7 @@ import OwnedBooksDashboard from './Components/OwnedBooksDashboard';
 import { Switch, Route } from 'react-router-dom'
 import AddBook from './Components/AddBook';
 import BookDetail from './Components/BookDetail'
+import store from './Stores/BookStore'
 
 class App extends Component {
   render() {
@@ -17,11 +18,10 @@ class App extends Component {
 
 const Paths = () => (
   <Switch>
-    <Route exact path='/' component={OwnedBooksDashboard} />
+    <Route path='/' render={(props) => <OwnedBooksDashboard {...props} store={store} />} />
     <Route exact path='/add_book' component={AddBook} />
     <Route exact path='/book_detail' component={OwnedBooksDashboard} />
-    <Route path='/book_detail/:id' component={BookDetail} />
-
+    <Route path='/book_detail/:id' render={(props) => <BookDetail {...props} store={store} />} />
   </Switch>
 )
 
