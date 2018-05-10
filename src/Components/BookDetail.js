@@ -1,7 +1,8 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
-import Link from 'react-router-dom/Link';
-import RaisedButton from 'material-ui/RaisedButton';
+import AppBar from 'material-ui/AppBar'
+import Link from 'react-router-dom/Link'
+import RaisedButton from 'material-ui/RaisedButton'
+import axios from 'axios';
 import {observer} from 'mobx-react';
 
 const titleStyle = {
@@ -9,8 +10,12 @@ const titleStyle = {
 };
 
 @observer class BookDetail extends React.Component {
+    componentDidMount() {
+        this.props.store.selectBook(this.props.match.params.id);
+    }
+
     render() {
-        console.log(this.props.store.selectedBook);
+        var book = this.props.store.selectedBook;
         return (
             <div>
                 <AppBar

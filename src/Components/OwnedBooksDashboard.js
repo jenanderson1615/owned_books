@@ -3,6 +3,8 @@ import AppBar from 'material-ui/AppBar'
 import Link from 'react-router-dom/Link'
 import { List, ListItem } from 'material-ui';
 import {observer} from 'mobx-react';
+import axios from 'axios';
+
 
 const titleStyle = {
     textAlign: "center",
@@ -20,8 +22,8 @@ const listStyle = {
     render() {
         const bookLinks = this.props.store.books.map((book) => (
             <ListItem key={book.id}>
-                <Link to={`/book_detail/${book.id}`} onClick={ () => {this.props.store.selectBook(book)} }>{book.volumeInfo.title}</Link>
-            </ListItem>        
+                <Link to={`/book_detail/${book.id}`}>{book.volumeInfo.title}</Link>
+            </ListItem>           
         ));
 
         return (

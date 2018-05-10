@@ -5,16 +5,19 @@ class BookStore {
     @observable books = [];
     @observable selectedBook = {};
 
-    @action selectBook = (book) => {
-        this.selectedBook = book;
-        console.log(this.selectedBook);
-    }
-
     @action getBooks() {
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=flowers`)
         .then(res => {
             this.books =  res.data.items ;
         })
+    }
+
+    @action selectBook(bookId) {
+        let link = 'https://www.googleapis.com/books/v1/volumes/' + bookId;
+        axios.get(link)
+            .then(res => {
+                this.selectedBook = res.data.volumeInfo;
+            })
     }
 }
 
