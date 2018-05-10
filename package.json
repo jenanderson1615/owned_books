@@ -29,6 +29,7 @@
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "material-ui": "^0.20.0",
+    "material-ui-search-bar": "^0.4.1",
     "mobx": "^4.2.0",
     "mobx-react": "^5.1.2",
     "object-assign": "4.1.1",

@@ -4,9 +4,12 @@ import axios from 'axios'
 class BookStore {
     @observable books = [];
     @observable selectedBook = {};
+    @observable searchString = {};
+
+    @action setSearchString = (searchString) => { this.searchString = searchString; } 
 
     @action getBooks() {
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=flowers`)
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=` + this.searchString)
         .then(res => {
             this.books =  res.data.items ;
         })
