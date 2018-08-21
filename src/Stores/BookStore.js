@@ -1,30 +1,33 @@
-import { observable, action } from 'mobx';
+import { types, flow } from "mobx-state-tree";
 import axios from 'axios'
+import Book from "./BookModel";
 
-class BookStore {
-    @observable books = [];
-    @observable selectedBook = {};
-    @observable searchString = {};
+const BookStore = types
+  .model({
+    books: types.optional(types.array(Book), []),
+    selectedBook: types.maybe(Book),
+    searchString: types.maybe(types.string)
+  })
+  .actions(self => {
+    return {
+    setSearchString(searchString) {
+        self.searchString = searchString
+      },
 
-    @action setSearchString = (searchString) => { this.searchString = searchString; } 
+      getBooks: flow(function*() {
+        try {
+          let books = yield axios.get(`https://www.googleapis.com/books/v1/volumes?q=` + this.searchString);
+          self.books = books.items;
+        } catch (error) {
+          console.log("Error fetching books", error);
+        }
+      }),
 
-    @action getBooks() {
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=` + this.searchString)
-        .then(res => {
-            this.books =  res.data.items ;
-        })
-    }
-
-    @action selectBook(bookId) {
+      selectBook: flow(function*(bookId) {
         let link = 'https://www.googleapis.com/books/v1/volumes/' + bookId;
-        axios.get(link)
-            .then(res => {
-                this.selectedBook = res.data.volumeInfo;
-            })
-    }
-}
-
-const store = new BookStore();
-
-export default store;
-export { BookStore };
+        let book = yield axios.get(link);
+        this.selectedBook = book.data.volumeInfo;
+      })
+    };
+  });
+export default BookStore;

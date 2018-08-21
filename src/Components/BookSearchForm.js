@@ -1,26 +1,26 @@
-import React from 'react';
-import SearchBar from 'material-ui-search-bar'
-import OwnedBooksDashboard from './OwnedBooksDashboard';
-import {observer} from 'mobx-react';
+import React from "react";
+import TextField from '@material-ui/core/TextField';
+import OwnedBooksDashboard from "./OwnedBooksDashboard";
 
-@observer class BookSearchForm extends React.Component {
-    render() {
-        return (
-            <SearchBar
-                onChange={() => console.log()}
-                onRequestSearch={this.onRequestSearch}
-                style={{
-                    margin: '0 auto',
-                    maxWidth: 800
-                }}
-            />
-        )
-    }
+class BookSearchForm extends React.Component {
+  render() {
+    return (
+    <div>
+      <TextField
+        id="search"
+        label="Search field"
+        type="search"
+        onChange={() => {
+            this.onRequestSearch();
+          }}
+      />
+      </div>
+    );
+  }
 
-    onRequestSearch() {
-        console.log(this.props.store);
-        <OwnedBooksDashboard store={this.props.store}/>
-    }
+  onRequestSearch() {
+    this.props.bookStore.bookStore.setSearchString();
+  }
 }
 
-export default BookSearchForm
+export default BookSearchForm;

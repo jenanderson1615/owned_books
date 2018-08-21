@@ -2,7 +2,6 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar'
 import Link from 'react-router-dom/Link'
 import { List, ListItem } from 'material-ui';
-import {observer} from 'mobx-react';
 import axios from 'axios';
 
 
@@ -14,13 +13,13 @@ const listStyle = {
     textAlign: "center",
 };
 
-@observer class OwnedBooksDashboard extends React.Component {  
+class OwnedBooksDashboard extends React.Component {  
     componentDidMount() {
-        this.props.store.getBooks();
+        this.props.bookStore.bookStore.getBooks();
     }
     
     render() {
-        const bookLinks = this.props.store.books.map((book) => (
+        const bookLinks = this.props.bookStore.bookStore.books.map((book) => (
             <ListItem key={book.id}>
                 <Link to={`/book_detail/${book.id}`}>{book.volumeInfo.title}</Link>
             </ListItem>           
