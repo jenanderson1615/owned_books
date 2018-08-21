@@ -9,11 +9,11 @@ const titleStyle = {
 
 class BookDetail extends React.Component {
     componentDidMount() {
-        this.props.store.selectBook(this.props.match.params.id);
+        this.props.bookStore.bookStore.selectBook(this.props.match.params.id);
     }
 
     render() {
-        var book = this.props.store.selectedBook;
+        var book = this.props.bookStore.bookStore.selectedBook;
         return (
             <div>
                 <AppBar
@@ -21,7 +21,7 @@ class BookDetail extends React.Component {
                     titleStyle={titleStyle}
                     showMenuIconButton={false}
                 />
-                {this.props.store.selectedBook && <BookDetails book={this.props.store.selectedBook} />}
+                {book && <BookDetails book={book} />}
             </div>
         );
     }
@@ -30,9 +30,8 @@ class BookDetail extends React.Component {
 const BookDetails = ({ book }) => {
     return (
         <div style={titleStyle}>
-            <div>{book.title}</div>
-            <div>{book.authors}</div>
-            <div>{book.description}</div>
+            <div>{book.volumeInfo.title}</div>
+            <div>{book.volumeInfo.description}</div>
             <Link to={'/'}>
                 <RaisedButton> Back </RaisedButton>
             </Link>

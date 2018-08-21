@@ -32,6 +32,7 @@
     "material-ui": "^0.20.0",
     "material-ui-search-bar": "^0.4.1",
     "mobx": "^5.0.4",
+    "mobx-react": "^5.2.5",
     "mobx-state-tree": "^3.2.3",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",

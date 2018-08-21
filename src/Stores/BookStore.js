@@ -16,8 +16,9 @@ const BookStore = types
 
       getBooks: flow(function*() {
         try {
-          let books = yield axios.get(`https://www.googleapis.com/books/v1/volumes?q=` + this.searchString);
-          self.books = books.items;
+          let link = `https://www.googleapis.com/books/v1/volumes?q=` + self.searchString;
+          let books = yield axios.get(link);
+          self.books = books.data.items;
         } catch (error) {
           console.log("Error fetching books", error);
         }
@@ -26,7 +27,7 @@ const BookStore = types
       selectBook: flow(function*(bookId) {
         let link = 'https://www.googleapis.com/books/v1/volumes/' + bookId;
         let book = yield axios.get(link);
-        this.selectedBook = book.data.volumeInfo;
+        self.selectedBook = book.data;
       })
     };
   });
